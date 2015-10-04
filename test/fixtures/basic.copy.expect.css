@@ -1,0 +1,4 @@
+.figure {
+	filter: alpha(opacity=50);
+	opacity: .5;
+}

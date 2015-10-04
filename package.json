@@ -1,0 +1,38 @@
+{
+  "name": "postcss-unopacity",
+  "version": "1.0.0",
+  "description": "Replace the opacity property with a filter property",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "nots",
+    "selectors"
+  ],
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathantneal/postcss-unopacity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonathantneal/postcss-unopacity/issues"
+  },
+  "homepage": "https://github.com/jonathantneal/postcss-unopacity",
+  "dependencies": {
+    "postcss": "^5.0.8"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-mocha": "^2.1.3"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "engines": {
+    "iojs": ">=2.0.0",
+    "node": ">=0.12.0"
+  }
+}
