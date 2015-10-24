@@ -2,7 +2,7 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[UnOpacity] is a [PostCSS] plugin that replaces the `opacity` property with a `filter` property. This can be useful for outputting CSS for old browsers like Internet Explorer 8.
+[UnOpacity] replaces the `opacity` property with a `filter` property. This can be useful for outputting CSS for older browsers like Internet Explorer 8.
 
 ```css
 /* before */
@@ -19,8 +19,6 @@
 ```
 
 ## Usage
-
-Follow these steps to use [UnOpacity].
 
 Add [UnOpacity] to your build tool:
 
