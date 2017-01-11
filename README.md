@@ -1,8 +1,12 @@
-# UnOpacity [![Build Status][ci-img]][ci]
+# UnOpacity [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
 
-<img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
+[![NPM Version][npm-img]][npm-url]
+[![Build Status][cli-img]][cli-url]
+[![Licensing][lic-img]][lic-url]
+[![Changelog][log-img]][log-url]
+[![Gitter Chat][git-img]][git-url]
 
-[UnOpacity] replaces the `opacity` property with a `filter` property. This can be useful for outputting CSS for older browsers like Internet Explorer 8.
+[UnOpacity] lets you use the `opacity` property in older Internet Explorer.
 
 ```css
 /* before */
@@ -28,8 +32,10 @@ npm install postcss-unopacity --save-dev
 
 #### Node
 
+Use [UnOpacity] to process your CSS:
+
 ```js
-require('postcss-unopacity')({ /* options */ }).process(YOUR_CSS);
+require('postcss-unopacity').process(YOUR_CSS, { /* options */ });
 ```
 
 #### PostCSS
@@ -40,12 +46,12 @@ Add [PostCSS] to your build tool:
 npm install postcss --save-dev
 ```
 
-Load [UnOpacity] as a PostCSS plugin:
+Use [UnOpacity] as a plugin:
 
 ```js
 postcss([
-    require('postcss-unopacity')({ /* options */ })
-]);
+	require('postcss-unopacity')({ /* options */ })
+]).process(YOUR_CSS, /* options */);
 ```
 
 #### Gulp
@@ -56,19 +62,19 @@ Add [Gulp PostCSS] to your build tool:
 npm install gulp-postcss --save-dev
 ```
 
-Enable [UnOpacity] within your Gulpfile:
+Use [UnOpacity] in your Gulpfile:
 
 ```js
 var postcss = require('gulp-postcss');
 
 gulp.task('css', function () {
-    return gulp.src('./css/src/*.css').pipe(
-        postcss([
-            require('postcss-unopacity')({ /* options */ })
-        ])
-    ).pipe(
-        gulp.dest('./css')
-    );
+	return gulp.src('./src/*.css').pipe(
+		postcss([
+			require('postcss-unopacity')({ /* options */ })
+		])
+	).pipe(
+		gulp.dest('.')
+	);
 });
 ```
 
@@ -80,26 +86,47 @@ Add [Grunt PostCSS] to your build tool:
 npm install grunt-postcss --save-dev
 ```
 
-Enable [UnOpacity] within your Gruntfile:
+Use [UnOpacity] in your Gruntfile:
 
 ```js
 grunt.loadNpmTasks('grunt-postcss');
 
 grunt.initConfig({
-    postcss: {
-        options: {
-            processors: [
-                require('postcss-unopacity')({ /* options */ })
-            ]
-        },
-        dist: {
-            src: 'css/*.css'
-        }
-    }
+	postcss: {
+		options: {
+			use: [
+				require('postcss-unopacity')({ /* options */ })
+			]
+		},
+		dist: {
+			src: '*.css'
+		}
+	}
 });
 ```
 
-### Options
+## Options
+
+#### `browsers`
+
+Type: `String` | `Array`  
+Default: `null`
+
+A list of browsers you want to target in your project. If no older Internet Explorer browsers are specified, this plugin will not make any changes to your CSS.
+
+```js
+require('postcss-unopacity')({
+  browsers: ["> 1%", "last 2 versions", "Firefox ESR"]
+})
+```
+
+This may also be defined in `package.json`.
+
+```json
+{
+  "browserslist": ["> 1%", "last 2 versions", "Firefox ESR"]
+}
+```
 
 #### `method`
 
@@ -107,7 +134,9 @@ Type: `String`
 Default: `'replace'`
 
 ##### `replace`
+
 Replace any `opacity` property with a fallback.
+
 ```css
 /* before */
 
@@ -123,7 +152,9 @@ Replace any `opacity` property with a fallback.
 ```
 
 ##### `copy`
+
 Copy any `opacity` property with a fallback.
+
 ```css
 /* before */
 
@@ -140,6 +171,7 @@ Copy any `opacity` property with a fallback.
 ```
 
 ##### `warn`
+
 Warn when an `opacity` property is used.
 
 #### `prefixed`
@@ -148,7 +180,9 @@ Type: `Boolean`
 Default: `false`
 
 ##### `true`
+
 Use an `-ms-filter` property as a fallback.
+
 ```css
 /* before */
 
@@ -164,7 +198,9 @@ Use an `-ms-filter` property as a fallback.
 ```
 
 ##### `false`
+
 Use a `filter` property as a fallback.
+
 ```css
 /* before */
 
@@ -179,9 +215,18 @@ Use a `filter` property as a fallback.
 }
 ```
 
-[ci]: https://travis-ci.org/jonathantneal/postcss-unopacity
-[ci-img]: https://travis-ci.org/jonathantneal/postcss-unopacity.svg
+[npm-url]: https://www.npmjs.com/package/postcss-unopacity
+[npm-img]: https://img.shields.io/npm/v/postcss-unopacity.svg
+[cli-url]: https://travis-ci.org/jonathantneal/postcss-unopacity
+[cli-img]: https://img.shields.io/travis/jonathantneal/postcss-unopacity.svg
+[lic-url]: LICENSE.md
+[lic-img]: https://img.shields.io/npm/l/postcss-unopacity.svg
+[log-url]: CHANGELOG.md
+[log-img]: https://img.shields.io/badge/changelog-md-blue.svg
+[git-url]: https://gitter.im/postcss/postcss
+[git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
+
+[UnOpacity]: https://github.com/jonathantneal/postcss-unopacity
+[PostCSS]: https://github.com/postcss/postcss
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
-[PostCSS]: https://github.com/postcss/postcss
-[UnOpacity]: https://github.com/jonathantneal/postcss-unopacity
